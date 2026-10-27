@@ -1,0 +1,242 @@
+
+@import "tailwindcss";
+
+/* ================================
+   QUICKHIRE THEME
+================================ */
+@theme {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+
+  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================
+   GLOBAL STYLES
+================================ */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  color: #172033;
+  background: #f8fafc;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Legacy Edge */
+}
+
+/* Hide scrollbar but keep scrolling enabled */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Better defaults */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+[role="button"],
+a,
+input,
+select,
+textarea {
+  transition-property: color, background-color, border-color, box-shadow,
+    opacity, transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Keyboard accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #312e81;
+  background: #e0e7ff;
+}
+
+/* Smooth anchor navigation */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* ================================
+   REUSABLE COMPONENTS
+================================ */
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .primary-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl
+      bg-brand-600 px-5 py-3 font-semibold text-white shadow-sm
+      transition duration-200 ease-in-out
+      hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lg
+      active:translate-y-0
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .secondary-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl
+      border border-slate-200 bg-white px-5 py-3 font-semibold
+      text-slate-700 transition duration-200 ease-in-out
+      hover:-translate-y-0.5 hover:border-brand-200
+      hover:bg-brand-50 hover:text-brand-700
+      active:translate-y-0;
+  }
+
+  .section-title {
+    @apply text-2xl font-extrabold tracking-tight text-slate-900
+      sm:text-3xl lg:text-4xl;
+  }
+
+  .form-input {
+    @apply w-full rounded-xl border border-slate-200 bg-white
+      px-4 py-3 text-sm text-slate-800 outline-none transition
+      duration-200 placeholder:text-slate-400
+      focus:border-brand-500 focus:ring-4 focus:ring-brand-100;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-slate-100 bg-white shadow-soft
+      transition duration-300 ease-out
+      hover:-translate-y-1 hover:border-brand-100 hover:shadow-xl;
+  }
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 350ms ease-out both;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 400ms ease-out both;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
